@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SunWise Hub - Explore</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="overlay">
+
+    <!-- Background Image Overlay -->
+    <div class="container">
+        <h1>Explore SunWise Hub</h1>
+        <p>Explore the key areas where SunWise Hub helps you harness the power of the sun.</p>
+        <a href="index.html" class="cta-button">Go Back</a>
+    </div>
+
+    <!-- Introduction Section -->
+    <section class="sunlight-section" id="sunlight-section">
+        <!-- Real-Time Sun Exposure Tracker -->
+        <div class="feature">
+            <h2>Real-Time Sun Exposure Tracker</h2>
+            <p>Enter your location to get real-time UV index data and sunlight exposure recommendations.</p>
+            <button class="btn" onclick="getUVIndex()">Get UV Index</button>
+            <a href="more-info.html" class="btn">Give More Info</a> <!-- Link to new page -->
+            <div id="uv-result" class="result"></div>
+        </div>
+
+        <!-- Health Benefits Tracker -->
+        <div class="feature">
+            <h2>Health Benefits Tracker</h2>
+            <p>Log your sunlight exposure and track health benefits like improved mood, vitamin D synthesis, and more.</p>
+            <label for="sun-hours">Enter hours of sun exposure today:</label>
+            <input type="number" id="sun-hours" placeholder="e.g., 2" min="0" max="12">
+            <button class="btn" onclick="trackHealthBenefits()">Track Health Benefits</button>
+            <div id="health-result" class="result"></div>
+        </div>
+
+        <!-- Sunlight & Health Info -->
+        <div class="feature">
+            <h2>Health Benefits of Sunlight</h2>
+            <p>Sunlight exposure is vital for producing Vitamin D, regulating sleep cycles, and boosting mood. But too much exposure can increase the risk of skin cancer. Balance is key!</p>
+            <button class="btn" onclick="showHealthBenefits()">Learn More</button>
+            <div id="health-info" class="result"></div>
+        </div>
+    </section>
+
+    <script>
+        function getUVIndex() {
+            const resultDiv = document.getElementById('uv-result');
+            const uvIndex = Math.floor(Math.random() * 11);
+            const uvMessage = `The current UV index is ${uvIndex}. ` + 
+                (uvIndex > 7 
+                ? '<span class="alert">Be cautious! High UV exposure.</span>' 
+                : 'Moderate to low exposure. Stay safe!');
+
+            resultDiv.innerHTML = uvMessage;
+        }
+
+        function trackHealthBenefits() {
+            const sunHours = document.getElementById('sun-hours').value;
+            let healthBenefit = 'Please enter the number of hours of sun exposure.';
+            if (sunHours > 0 && sunHours <= 2) {
+                healthBenefit = 'You’ve had moderate sun exposure today. Great for mood improvement and vitamin D!';
+            } else if (sunHours > 2 && sunHours <= 5) {
+                healthBenefit = 'You’re getting optimal sun exposure for vitamin D synthesis. Keep it up!';
+            } else if (sunHours > 5) {
+                healthBenefit = 'Careful! Too much sun exposure could lead to sunburn or skin damage.';
+            }
+            document.getElementById('health-result').innerHTML = healthBenefit;
+        }
+
+        function showHealthBenefits() {
+            const healthInfoDiv = document.getElementById('health-info');
+            const healthBenefits = 'Sunlight exposure plays a crucial role in synthesizing Vitamin D, which is vital for maintaining strong bones and preventing conditions like osteoporosis. In addition to its benefits for bone health, Vitamin D also supports immune function, helping your body fend off illnesses. Regular exposure to sunlight can improve your overall mood by increasing serotonin levels, a neurotransmitter linked to feelings of happiness. Embracing a healthy amount of sunlight can be a simple yet effective way to enhance both your physical and mental health.';
+            healthInfoDiv.innerHTML = healthBenefits;
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 SunWise Hub. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>
